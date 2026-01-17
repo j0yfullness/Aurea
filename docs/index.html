@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auréa Linen | Timeless Essentials</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#1c1c1c',
+                        'brand-dark': '#2A2A2A',
+                        'brand-soft': '#666666',
+                        'brand-paper': '#FAFAFA',
+                        'brand-beige': '#F0EFEA',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    letterSpacing: {
+                        'widest': '.25em',
+                        'super-wide': '.35em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .thin-border {
+            border-width: 0.5px;
+        }
+    </style>
+</head>
+
+<body class="bg-brand-paper text-brand-dark antialiased" x-data="shop()">
+
+    <nav class="fixed w-full z-40 top-0 transition-all duration-700 ease-out"
+        :class="scrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 flex justify-between items-center">
+
+            <a href="#home" :class="scrolled ? 'text-brand-black' : 'text-white'"
+                class="font-serif text-2xl md:text-3xl tracking-widest font-normal relative z-50 group order-1 md:order-2 transition-colors duration-500">
+                AURÉA LINEN<span :class="scrolled ? 'text-gray-300' : 'text-white/50'"
+                    class="group-hover:text-brand-soft transition">.</span>
+            </a>
+
+            <div :class="scrolled ? 'text-brand-soft' : 'text-white'"
+                class="hidden md:flex space-x-12 text-[10px] uppercase tracking-super-wide font-light order-1 transition-colors duration-500">
+                <a href="#shop" class="hover:opacity-70 transition duration-300">Shop</a>
+                <a href="#about" class="hover:opacity-70 transition duration-300">Journal</a>
+            </div>
+
+            <div class="flex items-center space-x-6 md:space-x-8 order-3">
+                <a href="#contact" :class="scrolled ? 'text-brand-soft' : 'text-white'"
+                    class="hidden md:inline-block text-[10px] uppercase tracking-super-wide font-light hover:opacity-70 transition transition-colors duration-500">Contact</a>
+
+                <button @click="cartOpen = true" :class="scrolled ? 'text-brand-black' : 'text-white'"
+                    class="text-[10px] uppercase tracking-widest font-light hover:opacity-70 transition flex items-center gap-2 transition-colors duration-500">
+                    <span>Bag</span>
+                    <span class="font-serif italic text-lg" x-text="`(${cart.length})`"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-brand-beige">
+        <div class="absolute inset-0">
+            <img src="./image/hero.jpg"
+                onerror="this.src='https://images.unsplash.com/photo-1594576722512-582bcd46fba3?q=80&w=2070&auto=format&fit=crop'"
+                class="w-full h-full object-cover opacity-90 grayscale-[10%]">
+            <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+
+        <div class="relative z-10 text-center text-white px-4 mt-10 animate-fade-in-up">
+            <p class="text-[9px] md:text-[10px] uppercase tracking-super-wide mb-6 opacity-90 font-light">Natural &
+                Sustainable</p>
+            <h1 class="font-serif text-6xl md:text-9xl font-thin tracking-wide mb-12 italic opacity-95">
+                Pure Touch
+            </h1>
+            <div class="flex justify-center">
+                <a href="#shop"
+                    class="group relative px-12 py-4 border border-white/40 hover:border-white transition duration-500">
+                    <span class="relative z-10 text-[10px] uppercase tracking-super-wide text-white">Discover</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-32 px-6 max-w-3xl mx-auto text-center">
+        <span class="font-serif text-6xl text-gray-200 block mb-6">“</span>
+        <p class="font-serif text-2xl md:text-4xl leading-relaxed font-light text-brand-black">
+            Linen is the fabric of memory. <br>
+            <span class="text-brand-soft italic text-xl md:text-3xl">It starts crisp, but softens with time, just like a
+                golden memory.</span>
+        </p>
+    </section>
+
+    <section id="shop" class="py-20 px-6 md:px-12 max-w-[1400px] mx-auto border-t thin-border border-gray-200">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 pt-10">
+            <h2 class="font-serif text-4xl md:text-5xl font-light italic text-brand-black">The Collection</h2>
+            <p class="text-[10px] uppercase tracking-super-wide text-gray-400 mt-4 md:mt-0">Auréa / Essentials 2024</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-24">
+            <template x-for="product in products" :key="product.id">
+                <div class="group cursor-pointer" @click="openModal(product)">
+                    <div class="relative overflow-hidden aspect-[3/4] mb-8 bg-brand-beige">
+                        <img :src="product.image"
+                            onerror="this.src='https://placehold.co/600x800/E5E5E5/999999?text=Image+Not+Found'"
+                            class="w-full h-full object-cover opacity-95 group-hover:scale-105 group-hover:opacity-100 transition duration-1000 ease-out">
+                        <div class="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition duration-500"></div>
+                        <div
+                            class="absolute bottom-6 left-0 w-full text-center opacity-0 group-hover:opacity-100 transition duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <span class="text-[9px] uppercase tracking-widest bg-white/90 px-4 py-2 text-black">Quick
+                                View</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-serif text-2xl font-light mb-1 group-hover:italic transition-all duration-300"
+                                x-text="product.name"></h3>
+                            <p class="text-[9px] uppercase tracking-widest text-gray-400 font-light"
+                                x-text="product.material"></p>
+                        </div>
+                        <span class="text-sm font-light tracking-wide font-sans mt-1"
+                            x-text="formatRupiah(product.price)"></span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 px-6 md:px-12 bg-white">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 pr-0 md:pr-16">
+                    <p class="text-[10px] uppercase tracking-super-wide text-gray-400 mb-8">The Philosophy</p>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light mb-10 leading-none">
+                        Golden <span class="italic block ml-12">Threads.</span>
+                    </h2>
+                    <div class="space-y-6 text-sm font-light leading-loose text-gray-600 font-sans text-justify">
+                        <p>
+                            Selamat datang di <strong>Auréa Linen</strong>. Kata "Auréa" berarti keemasan atau
+                            bercahaya, merefleksikan bagaimana kain linen berkualitas memantulkan cahaya matahari secara
+                            alami.
+                        </p>
+                        <p>
+                            Kami fokus pada bahan-bahan natural yang bernapas. Tidak ada polyester, tidak ada bahan
+                            sintetik. Hanya serat murni dari alam yang dijahit tangan di studio kami untuk kenyamanan
+                            kulit Anda.
+                        </p>
+                    </div>
+                    <div class="mt-12 pt-8 border-t thin-border border-gray-100">
+                        <p class="font-serif italic text-xl text-black">Aurelia Amelia Putri</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-1">Founder, Auréa Linen</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 h-[600px] bg-brand-beige overflow-hidden relative">
+                    <img src="./image/about.jpg"
+                        onerror="this.src='https://images.unsplash.com/photo-1594052042738-76579df6e04d?q=80&w=1470&auto=format&fit=crop'"
+                        class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition duration-1000">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-[#111] text-white py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-4xl md:text-5xl font-light mb-4">Stay Connected</h2>
+            <div class="space-y-4">
+                <a href="mailto:hello@aurealinen.com"
+                    class="block font-serif text-2xl md:text-3xl text-gray-300 hover:text-white hover:italic transition duration-300">hello@aurealinen.com</a>
+                <a href="https://wa.me/6281234567890"
+                    class="block font-serif text-2xl md:text-3xl text-gray-300 hover:text-white hover:italic transition duration-300">+62
+                    812 3456 7890</a>
+            </div>
+            <div
+                class="mt-20 pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-gray-600">
+                <p>&copy; 2024 Auréa Linen Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <div x-show="modalOpen" class="relative z-50" x-cloak>
+        <div class="fixed inset-0 bg-white/90 backdrop-blur-md transition-opacity duration-500" @click="closeModal()">
+        </div>
+        <div class="fixed inset-0 flex items-center justify-center p-4 md:p-8 pointer-events-none">
+            <div
+                class="bg-white w-full max-w-6xl h-full md:h-auto max-h-[90vh] shadow-2xl flex flex-col md:flex-row pointer-events-auto overflow-hidden animate-fade-in-up ring-1 ring-black/5">
+                <div class="w-full md:w-1/2 bg-gray-100 h-1/2 md:h-auto relative">
+                    <img :src="activeProduct.image" class="absolute inset-0 w-full h-full object-cover">
+                    <button @click="closeModal()"
+                        class="absolute top-4 left-4 md:hidden z-20 bg-white/80 p-2 rounded-full"><svg class="w-5 h-5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg></button>
+                </div>
+                <div
+                    class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white h-1/2 md:h-auto overflow-y-auto">
+                    <div class="hidden md:flex justify-between items-start mb-2">
+                        <p class="text-[9px] uppercase tracking-super-wide text-gray-400"
+                            x-text="activeProduct.material"></p>
+                        <button @click="closeModal()" class="text-gray-400 hover:text-black transition"><svg
+                                class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg></button>
+                    </div>
+                    <h2 class="font-serif text-3xl md:text-5xl font-light mb-6 text-brand-black italic mt-4 md:mt-0"
+                        x-text="activeProduct.name"></h2>
+                    <p class="text-xl font-light mb-8 text-gray-600 font-sans"
+                        x-text="formatRupiah(activeProduct.price)"></p>
+                    <div class="text-sm font-light leading-relaxed text-gray-500 font-sans space-y-4 mb-12 max-w-md">
+                        <p x-text="activeProduct.desc"></p>
+                    </div>
+                    <button @click="addToCart(activeProduct); closeModal()"
+                        class="w-full border thin-border border-black bg-transparent py-5 text-[10px] uppercase tracking-super-wide hover:bg-black hover:text-white transition duration-500">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="cartOpen" class="relative z-[60]" x-cloak>
+        <div class="fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500"
+            @click="cartOpen = false"></div>
+        <div class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl transform transition-transform duration-500 ease-out flex flex-col"
+            :class="cartOpen ? 'translate-x-0' : 'translate-x-full'">
+            <div class="p-8 border-b thin-border border-gray-100 flex justify-between items-end">
+                <h2 class="font-serif text-3xl italic" x-text="checkoutMode ? 'Delivery' : 'Your Bag'"></h2>
+                <button @click="cartOpen = false"
+                    class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black">Close</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-8">
+                <div x-show="!checkoutMode">
+                    <template x-for="(item, index) in cart" :key="index">
+                        <div class="flex gap-6 mb-8">
+                            <div class="w-20 h-28 bg-gray-100 shrink-0">
+                                <img :src="item.image" class="w-full h-full object-cover grayscale-[20%]">
+                            </div>
+                            <div class="flex-1 flex flex-col justify-between py-1">
+                                <div>
+                                    <h3 class="font-serif text-xl leading-none mb-2" x-text="item.name"></h3>
+                                    <p class="text-[9px] uppercase tracking-widest text-gray-400"
+                                        x-text="item.material"></p>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <p class="text-sm font-light" x-text="formatRupiah(item.price)"></p>
+                                    <button @click="removeFromCart(index)"
+                                        class="text-[9px] uppercase tracking-widest text-gray-300 hover:text-red-400 transition">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div x-show="cart.length === 0"
+                        class="h-full flex items-center justify-center text-gray-300 font-serif italic text-lg">Your bag
+                        is empty.</div>
+                </div>
+                <div x-show="checkoutMode" class="space-y-8 animate-fade-in-up">
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">WhatsApp Order Details</p>
+                    <div class="group"><label
+                            class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2">Name</label><input
+                            x-model="customer.name" type="text"
+                            class="w-full border-b thin-border border-gray-300 py-2 bg-transparent focus:outline-none focus:border-black transition font-light">
+                    </div>
+                    <div class="group"><label
+                            class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2">WhatsApp</label><input
+                            x-model="customer.phone" type="tel"
+                            class="w-full border-b thin-border border-gray-300 py-2 bg-transparent focus:outline-none focus:border-black transition font-light">
+                    </div>
+                    <div class="group"><label
+                            class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2">Address</label><textarea
+                            x-model="customer.address" rows="3"
+                            class="w-full border-b thin-border border-gray-300 py-2 bg-transparent focus:outline-none focus:border-black transition font-light resize-none"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="p-8 border-t thin-border border-gray-100 bg-white" x-show="cart.length > 0">
+                <div class="flex justify-between font-serif text-2xl mb-6"><span class="italic">Total</span><span
+                        x-text="formatRupiah(totalPrice())"></span></div>
+                <button x-show="!checkoutMode" @click="checkoutMode = true"
+                    class="w-full bg-black text-white py-4 text-[10px] uppercase tracking-super-wide hover:bg-gray-800 transition">Checkout</button>
+                <div x-show="checkoutMode" class="space-y-4">
+                    <button @click="processOrder()" :disabled="!customer.name || !customer.address"
+                        class="w-full bg-black text-white py-4 text-[10px] uppercase tracking-super-wide hover:bg-gray-800 transition disabled:opacity-50">Confirm
+                        via WhatsApp</button>
+                    <button @click="checkoutMode = false"
+                        class="w-full text-[10px] uppercase tracking-widest text-gray-400 hover:text-black">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function shop() {
+            return {
+                cartOpen: false,
+                modalOpen: false,
+                checkoutMode: false,
+                scrolled: false,
+                activeProduct: {},
+                cart: [],
+                customer: { name: '', phone: '', address: '' },
+
+                products: [
+                    {
+                        id: 1,
+                        name: 'Noire Silk',
+                        material: '100% Mulberry Silk',
+                        price: 285000,
+                        desc: 'Sutra hitam pekat dengan tekstur cair.',
+                        image: './image/product1.jpg'
+                    },
+                    {
+                        id: 2,
+                        name: 'Stone Cotton',
+                        material: 'Japanese Cotton',
+                        price: 145000,
+                        desc: 'Katun Jepang warna batu alam yang lembut.',
+                        image: './image/product2.jpg'
+                    },
+                    {
+                        id: 3,
+                        name: 'Auréa White',
+                        material: 'Pure Linen',
+                        price: 195000,
+                        desc: 'Linen putih klasik dengan serat emas.',
+                        image: './image/product3.jpg'
+                    },
+                    {
+                        id: 4,
+                        name: 'Indigo Deep',
+                        material: 'Hand-dyed Batik',
+                        price: 450000,
+                        desc: 'Batik tulis indigo celup tangan.',
+                        image: './image/product4.jpg'
+                    }
+                ],
+
+                init() { window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 50; }); },
+                openModal(product) { this.activeProduct = product; this.modalOpen = true; },
+                closeModal() { this.modalOpen = false; },
+                addToCart(product) { this.cart.push(product); this.cartOpen = true; },
+                removeFromCart(index) { this.cart.splice(index, 1); },
+                totalPrice() { return this.cart.reduce((sum, item) => sum + item.price, 0); },
+                formatRupiah(number) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number || 0); },
+                processOrder() {
+                    const total = this.formatRupiah(this.totalPrice());
+                    let msg = `*ORDER AURÉA LINEN*%0A%0A*Nama:* ${this.customer.name}%0A*WA:* ${this.customer.phone}%0A*Alamat:* ${this.customer.address}%0A%0A*Pesanan:*%0A`;
+                    this.cart.forEach((item, i) => msg += `${i + 1}. ${item.name} - ${this.formatRupiah(item.price)}%0A`);
+                    msg += `%0A*TOTAL: ${total}*`;
+                    window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
